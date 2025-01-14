@@ -1,0 +1,38 @@
+server:
+  port: 9001
+  servlet:
+    context-path: /
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+  application:
+    name: sdt
+
+  profiles:
+    active: develop
+
+  datasource:
+    username: 'DEv_JEAN'
+    url: jdbc:oracle:thin:@192.168.0.46:1521:xe
+    password: 'JuanL02'
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    hikari:
+      max-lifetime: 1800000
+    jpa:
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.OracleDialect
+          format-sql: 'true'
+          ddl-auto: update
+          boot:
+            allow_jdbc_metadata_access: false
+          naming:
+            physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        show-sql: 'true'
+  logging:
+    level:
+      org.hibernate.SQL: DEBUG
+      org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
