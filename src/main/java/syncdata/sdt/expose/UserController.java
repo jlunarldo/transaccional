@@ -2,9 +2,7 @@ package syncdata.sdt.expose;
 
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
-import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,9 +59,6 @@ public class UserController {
     }
 
 
-
-
-
     @ApiResponses(value={
             @ApiResponse(code=201, message = "", response = GeneralResponse.class),
             @ApiResponse(code=400, message = "Error", response = GeneralException.class),
@@ -76,9 +71,6 @@ public class UserController {
         log.info(fullName);
         return userRecord.getUserName(fullName);
     }
-
-
-
 
     @GetMapping(value=("flag/{flag}"), produces = "application/json;charset=UTF-8")
     @ResponseStatus(HttpStatus.OK)
@@ -104,8 +96,6 @@ public class UserController {
     @DeleteMapping(value=("deleteUser/{id}"), produces = "application/json;charset=UTF-8")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<GeneralResponse> deleteUser (@PathVariable   long id){
-
-
         return Mono.justOrEmpty((userRecord.deleteUserReponse(id)));
     }
 
