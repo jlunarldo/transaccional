@@ -18,14 +18,14 @@ export class CardComponent {
     }
     
     isDisabled:boolean=true;
-    decrementUnit(){
+    decrementUnit():void{
         if(this.num>0){
             this.num--;
             this.checkDisabled();
         }
     }
     
-    increaseUnit(){
+    increaseUnit():void{
         this.num++;
         this.checkDisabled();
     }
