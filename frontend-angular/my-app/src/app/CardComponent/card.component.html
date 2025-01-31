@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="nombre">
+        {{productCard.nameProduct}}
+    </div>
+    <div class="categoria">
+        {{productCard.category}}
+    </div>
+    <div class="price">
+        <div class="price-unit">
+            {{productCard.priceUnit}}
+        </div>
+        <div class="price-total">
+            <div class="total">19.80</div>
+            <div class="button-alter">
+                <button class="lower" (click)="decrementUnit()" [disabled]="isDisabled">
+                    -
+                </button>
+                <div class="unit">
+                    {{num}}
+                </div>
+                <button class="add" (click)="increaseUnit()">+</button>
+            </div>
+        </div>
+    </div>
+</div>
