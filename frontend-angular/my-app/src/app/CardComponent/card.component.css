@@ -1,13 +1,14 @@
 .container{
     display: flex;
-width: 250px;
-height: 220px;
-padding: 15px;
+width: 230px;
+height: 200px;
+padding: 25px;
 flex-direction: column;
 align-items: flex-start;
 gap: 15px;
 border: 1px solid #CCC7C7;
 background: #FFF;
+border-radius: 10px;
 }
 .nombre{
     display: flex;
@@ -51,13 +52,17 @@ border-right: 1px solid black;
     flex: 1 0 0;
     align-self: stretch;
 }
-
+.price .price-total .total{
+    width: 100%;
+    text-align: center;
+}
 .price .button-alter{
     display: flex;
 padding: 10px 0px;
 justify-content: center;
 align-items: center;
-gap: 29px;
-flex: 1 0 0;
-align-self: stretch;
+
+gap: 15px;
+
+
 }

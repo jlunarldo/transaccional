@@ -8,13 +8,13 @@ import { Product } from '../../Product';
 })
 
 export class CardComponent {
-   num:number=0;
-
+    num:number=0;
+    priceTotal:number=0;
     productCard:Product={
         id:1,
     nameProduct:"two",
     category:"three",
-    priceUnit:15.00
+    priceUnit:15.90
     }
     
     isDisabled:boolean=true;
@@ -22,14 +22,18 @@ export class CardComponent {
         if(this.num>0){
             this.num--;
             this.checkDisabled();
+           this.priceTotal=this.productCard.priceUnit*this.num;
         }
     }
     
     increaseUnit():void{
         this.num++;
         this.checkDisabled();
+        this.priceTotal=this.productCard.priceUnit*this.num;
     }
     checkDisabled():void{
         this.isDisabled = this.num == 0;
     }
+
+  
 }
