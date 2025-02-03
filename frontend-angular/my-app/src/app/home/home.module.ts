@@ -5,6 +5,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { CardModule } from '../CardComponent/card.module';
 import { SearchModule } from '../search/search.module';
+import { HeaderModule } from '../header/header.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { SearchModule } from '../search/search.module';
     CommonModule,
     HomeRoutingModule,
     CardModule,
-    SearchModule
+    SearchModule,
+    HeaderModule
   ],
   exports:[
     HomeComponent

@@ -61,22 +61,11 @@ body {
     align-items: center;
     gap: 10px;
 }
-header {
-    display: flex;
-    height: 42px;
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-    align-self: stretch;
-    background: #283549;
-    color:#F8F1F1;
-}
+
 
 .container{
     display: flex;
-    width: 1200px;
+    width: 100%;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -133,4 +122,8 @@ header {
 }
 .product-details button:hover {
     background-color: #218838;
+}
+app-root{
+    width: 100%;
+  
 }
