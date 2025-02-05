@@ -1,15 +1,16 @@
 package syncdata.sdt.business.impl;
 
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+import syncdata.sdt.business.service.ProductService;
 import syncdata.sdt.business.dto.ProductDTO;
 import syncdata.sdt.business.entities.Product;
 import syncdata.sdt.business.repository.ProductRepository;
-import syncdata.sdt.business.service.ProductService;
+import syncdata.sdt.exception.CustomException;
 import syncdata.sdt.exception.GeneralException;
 import syncdata.sdt.mapper.GeneralMapper;
 import syncdata.sdt.model.reponse.GeneralResponse;
@@ -21,13 +22,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
 @Slf4j
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
+
+    public ProductServiceImpl(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     @Override
     public GeneralResponse saveProduct(ProductDTO productDTO){
@@ -42,14 +46,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Mono<GetResponse<Product>> getProductResponse(long id){
-        return Mono.fromSupplier(() -> {
+        return Mono.fromSupplier(()->{
 
-            Optional<Product> productOptional = productRepository.findById(id);
+            Optional<Product> productOptional= productRepository.findById(id);
 
-            if (!productOptional.isPresent()) {
-                throw new GeneralException("No existe producto");
+            if(!productOptional.isPresent()){
+                throw  new CustomException("No existe producto", HttpStatus.BAD_REQUEST);
             }
-            Product product = productOptional.get();
+            Product product= productOptional.get();
             return GetResponse.<Product>builder()
                     .object(product)
                     .build();
@@ -58,21 +62,43 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Mono<GetResponse<Product>> getAllProduct(){
-        return Mono.fromSupplier(() -> {
+    public Mono<GetResponse<Product>> getAllProduct() {
+        return Mono.fromSupplier(()->{
 
-            List<Product> listProduct = productRepository.findAll();
+            List<Product> listProduct= productRepository.findAll();
 
-            return GetResponse.<Product>builder()
-                    .list(listProduct)
-                    .build();
+            return GetResponse.<Product>builder().
+                    list(listProduct).
+                    build();
 
         });
     }
 
     @Override
-    public GeneralResponse updateProduct(ProductDTO productDTO){
+    public Mono<GetResponse<String>> getAllUniqueCategories(){
+        return Mono.fromSupplier(()->{
+            List<String> listCategorie= productRepository.getAllUniqueCategories();
 
+            return GetResponse.<String>builder().
+                    list(listCategorie).
+                    build();
+        });
+    }
+    /*@Override
+    public Mono<GetResponse<Product>> getAllProduct{
+        return Mono.fromSupplier(()->{
+
+            List<Product> listProduct= productRepository.findAll();
+
+            return GetResponse.<Product>builder().
+                    list(listProduct).
+                    build();
+
+        });
+    }*/
+
+    @Override
+    public GeneralResponse updateProduct(ProductDTO productDTO){
         return new GeneralResponse();
     }
 
@@ -80,14 +106,45 @@ public class ProductServiceImpl implements ProductService {
     public GeneralResponse deleteProduct(long id){
         GeneralResponse generalResponse = new GeneralResponse();
 
-        if (productRepository.existsById(id)) {
-
+        if(productRepository.existsById(id)) {
             productRepository.deleteById(id);
-            generalResponse.setMessage("Producto se ha eliminado correctamente ");
+            generalResponse.setMessage("Product deleted correctly");
             return generalResponse;
-        } else {
-            generalResponse.setMessage("No se ha encontrado producto");
-            return generalResponse;
+        }else{
+            throw  new CustomException("Product not found", HttpStatus.BAD_REQUEST);
         }
     }
+
+    /*@Override
+    public Mono<GetResponse<Product>> getProductByName(String productName){
+        return Mono.fromSupplier(()->{
+
+            log.info(productName);
+            List<Product> product= productRepository.getByProductName(productName);
+            if(product.isEmpty()){
+                throw  new CustomException("Not exist product with name= " + productName, HttpStatus.BAD_REQUEST);
+            }
+
+            return GetResponse.<Product>builder()
+                    .list(product)
+                    .build();
+        });
+    }
+
+    @Override
+    public Mono<GetResponse<Product>> getByFlag(String flag){
+        return Mono.fromSupplier(()->{
+
+            log.info(flag);
+            List<Product> product= productRepository.getByFlag(flag);
+            log.info(product.getFirst().getProductName());
+            if(product==null){
+                throw  new CustomException("Not exist product with flag: "+ flag, HttpStatus.BAD_REQUEST);
+            }
+
+            return GetResponse.<Product>builder()
+                    .list(product)
+                    .build();
+        });
+    }*/
 }

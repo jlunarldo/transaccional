@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
 import { HomeModule } from './home/home.module';
 import { SearchModule } from './search/search.module';
+import { provideHttpClient } from '@angular/common/http';
 
 
 @NgModule({
@@ -21,10 +22,11 @@ import { SearchModule } from './search/search.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HomeModule
+    HomeModule,
+   
     
   ],     
-  providers: [],
+  providers: [provideHttpClient()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

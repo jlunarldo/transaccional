@@ -31,6 +31,7 @@ align-items: flex-start;
 gap: 10px;
 flex: 1 0 0;
 align-self: stretch;
+font-size: 12px;
 }
 .price .price-unit{
     display: flex;

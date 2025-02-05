@@ -1,14 +1,14 @@
-<div class="container">
-    <div class="nombre">
+<div class="container" *ngIf="productCard">
+    <div class="nombre" >
         {{productCard.nameProduct}}
     </div>
     <div class="categoria">
         {{productCard.category}}
     </div>
     <div class="price">
-        <div class="price-unit">
+        <!-- <div class="price-unit">
             {{productCard.priceUnit}}
-        </div>
+        </div> -->
         <div class="price-total">
             <div class="total">{{priceTotal}}</div>
             <div class="button-alter">
@@ -16,10 +16,12 @@
                     -
                 </button>
                 <div class="unit">
-                    {{num}}
+                     {{num}} 
+                    
                 </div>
                 <button class="add" (click)="increaseUnit()">+</button>
             </div>
+            
         </div>
     </div>
 </div>

@@ -6,6 +6,8 @@ import syncdata.sdt.business.entities.Product;
 import syncdata.sdt.model.reponse.GeneralResponse;
 import syncdata.sdt.model.reponse.GetResponse;
 
+import java.util.List;
+
 public interface ProductService {
 
     GeneralResponse saveProduct(ProductDTO ProductDTO);
@@ -17,4 +19,5 @@ public interface ProductService {
     public GeneralResponse updateProduct(ProductDTO productDTO);
 
     GeneralResponse deleteProduct(long id);
+    public Mono<GetResponse<String>> getAllUniqueCategories();
 }
