@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 import { Product } from '../../Product';
 import { ProductService } from '../home/product.service';
 @Component({
@@ -10,14 +10,14 @@ import { ProductService } from '../home/product.service';
 
 export class CardComponent {
     num:number=1;
-    priceTotal:number=0;
+    data =input.required<Product>()
+    // @Input() data!: Product;
    
-    
-    
+    priceTotal:number=0;
     productCard?:Product;
     ngOnInit() {
-       
-        this.getProduct();
+
+        
       }
     constructor(public productService: ProductService){
        
@@ -31,23 +31,24 @@ export class CardComponent {
     }
     
     
-    
-    
-
-    
     isDisabled:boolean=true;
     decrementUnit():void{
         if(this.num>1){
             this.num--;
             this.checkDisabled();
-            this.priceTotal = (this.productCard?.priceUnit ?? 0) * this.num;
+            
+            
+            //this.priceTotal = (this.productCard?.priceUnit ?? 0) * this.num;
+            this.priceTotal = (this.data()?.priceUnit ?? 0) * this.num;
+            console.log("acaban de actualizar el precio:"+this.priceTotal );
         }
     }
     
     increaseUnit():void{
         this.num++;
         this.checkDisabled();
-        this.priceTotal = (this.productCard?.priceUnit ?? 0) * this.num;
+        this.priceTotal = (this.data()?.priceUnit ?? 0) * this.num;
+        console.log("acaban de actualizar el precio:"+this.priceTotal );
     }
     checkDisabled():void{
         this.isDisabled = this.num == 1;
