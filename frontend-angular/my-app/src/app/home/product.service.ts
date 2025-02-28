@@ -17,4 +17,11 @@ export class ProductService{
         return this.http.get<ApiResponse<Product>>(this.url);
     }
     
+    private urlAll:string="http://localhost:9001/product/v1/getAllProduct"
+    getAllProduct():Observable<ApiResponse<Product>>{
+        console.log(this.http.get<ApiResponse<Product>>(this.urlAll));
+        console.log("estoy entrando a ala url");
+        return this.http.get<ApiResponse<Product>>(this.urlAll);
+    }
+
 }

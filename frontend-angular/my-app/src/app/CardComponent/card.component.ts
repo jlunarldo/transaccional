@@ -1,6 +1,8 @@
 import { Component, input, Input } from '@angular/core';
 import { Product } from '../../Product';
 import { ProductService } from '../home/product.service';
+import { ChangeDetectorRef } from '@angular/core';
+
 @Component({
   selector: 'card-component',
   templateUrl: './card.component.html',
@@ -13,23 +15,17 @@ export class CardComponent {
     data =input.required<Product>()
     // @Input() data!: Product;
    
-    priceTotal:number=0;
+    priceTotal:number=1;
     productCard?:Product;
     ngOnInit() {
 
         
       }
-    constructor(public productService: ProductService){
+    constructor( private cd: ChangeDetectorRef){
        
     }
 
-    getProduct(): void {
-        this.productService.getProduct().subscribe(response => {
-            this.productCard = response.object;
-            //this.priceTotal = this.productCard.priceUnit * this.num;
-        });
-    }
-    
+     
     
     isDisabled:boolean=true;
     decrementUnit():void{
@@ -41,6 +37,7 @@ export class CardComponent {
             //this.priceTotal = (this.productCard?.priceUnit ?? 0) * this.num;
             this.priceTotal = (this.data()?.priceUnit ?? 0) * this.num;
             console.log("acaban de actualizar el precio:"+this.priceTotal );
+            this.cd.detectChanges();
         }
     }
     
@@ -49,6 +46,7 @@ export class CardComponent {
         this.checkDisabled();
         this.priceTotal = (this.data()?.priceUnit ?? 0) * this.num;
         console.log("acaban de actualizar el precio:"+this.priceTotal );
+        this.cd.detectChanges();
     }
     checkDisabled():void{
         this.isDisabled = this.num == 1;
