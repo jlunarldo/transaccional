@@ -45,9 +45,10 @@ public class ProductRecord {
         return productService.getAllUniqueCategories();
     }
 
-    /*public Mono<GetResponse<Product>> getProductName(String productName){
-        return productService.getProductName(productName);
-    }*/
+
+    public Mono<GetResponse<Product>> getProductCategorie(String categorie){
+        return productService.getProductCategorie(categorie);
+    }/*p*/
 
     /*public Mono<GetResponse<Product>> getflag(String flag){
         return productService.getByFlag(flag);

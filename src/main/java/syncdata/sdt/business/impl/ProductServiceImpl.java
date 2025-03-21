@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+import syncdata.sdt.business.entities.UserGeneral;
 import syncdata.sdt.business.service.ProductService;
 import syncdata.sdt.business.dto.ProductDTO;
 import syncdata.sdt.business.entities.Product;
@@ -115,6 +116,19 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
+
+    @Override
+    public Mono<GetResponse<Product>> getProductCategorie(String categorie){
+        return Mono.fromSupplier(()->{
+
+           List<Product> listProductCategorie= productRepository.findByCategorie(categorie);
+
+            return GetResponse.<Product>builder().
+                    list(listProductCategorie).
+                    build();
+
+        });
+    }
     /*@Override
     public Mono<GetResponse<Product>> getProductByName(String productName){
         return Mono.fromSupplier(()->{

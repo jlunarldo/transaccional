@@ -2,8 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from "rxjs";
 import { Product } from "../../Product";
-import { map } from 'rxjs/operators';
-import { tap } from 'rxjs/operators';
+
 import { ApiResponse } from "./ApiResponse";
 
 @Injectable({

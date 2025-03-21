@@ -58,18 +58,19 @@ public class ProductController {
     public Mono<GetResponse<String>> getAllUniqueCategories(){
         return productRecord.getAllUniqueCategories();
     }
-   /* @ApiResponses(value={
+    @ApiResponses(value={
             @ApiResponse(code=201, message = "", response = GeneralResponse.class),
             @ApiResponse(code=400, message = "Error", response = GeneralException.class),
             @ApiResponse(code=401, message = "Acces not autorizhed", response = GeneralException.class),
             @ApiResponse(code=500, message = "Ocurrio un error", response = GeneralException.class),
     })
-    @GetMapping(value=("name/{productName}"), produces = "application/json;charset=UTF-8")
+    @GetMapping(value=("product/{categorie}"), produces = "application/json;charset=UTF-8")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<GetResponse<Product>> getProductName (@PathVariable("productName") String productName){
-        log.info(productName);
-        return productRecord.getProductName(productName);
+    public Mono<GetResponse<Product>> getProductName (@PathVariable("categorie") String categorie){
+        log.info(categorie);
+        return productRecord.getProductCategorie(categorie);
     }
+    /*
     @GetMapping(value=("flag/{flag}"), produces = "application/json;charset=UTF-8")
     @ResponseStatus(HttpStatus.OK)
     public Mono<GetResponse<Product>> getFlag (@PathVariable("flag") int flag){

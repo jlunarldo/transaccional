@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ProductService {
 
-    GeneralResponse saveProduct(ProductDTO ProductDTO);
+    public GeneralResponse saveProduct(ProductDTO ProductDTO);
 
     public Mono<GetResponse<Product>> getProductResponse(long id);
 
@@ -18,6 +18,9 @@ public interface ProductService {
 
     public GeneralResponse updateProduct(ProductDTO productDTO);
 
-    GeneralResponse deleteProduct(long id);
+    public GeneralResponse deleteProduct(long id);
+
     public Mono<GetResponse<String>> getAllUniqueCategories();
+
+    public Mono<GetResponse<Product>> getProductCategorie(String categorie);
 }

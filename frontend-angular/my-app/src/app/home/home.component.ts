@@ -12,7 +12,7 @@ import { ProductService } from '../home/product.service';
   
 })
 export class HomeComponent {
-  products: Product[]=[
+ /*  products: Product[]=[
     {
       id: 1,
       nameProduct: "Laptop Gamer",
@@ -23,69 +23,32 @@ export class HomeComponent {
       cantTotal: 2,
       priceTotal: 3000
     }
+  ];*/
+ 
+  products: Product[] = [
+    { id: 1, nameProduct: "Laptop Gamer", category: "Electronics", priceUnit: 1500, subCategorie: "Computers", flag: 1, cantTotal: 2, priceTotal: 3000 },
+    { id: 2, nameProduct: "Smartphone Pro", category: "Electronics", priceUnit: 800, flag: 1 },
+    { id: 3, nameProduct: "Office Chair", category: "Furniture", priceUnit: 120, subCategorie: "Chairs", flag: 0, cantTotal: 4, priceTotal: 480 },
+    { id: 4, nameProduct: "Wireless Headphones", category: "Accessories", priceUnit: 200, flag: 1, cantTotal: 3, priceTotal: 600 },
+    { id: 5, nameProduct: "Gaming Mouse", category: "Accessories", priceUnit: 50, subCategorie: "Peripherals", flag: 1 }
   ];
-  ngOnInit() {
-    this.loadProducts().then(() => {
-      this.createComponent();
-  });
-  }
-
-  constructor(public productService: ProductService){};
-  
-  /*products: Product[] = [
-    {
-      id: 1,
-      nameProduct: "Laptop Gamer",
-      category: "Electronics",
-      priceUnit: 1500,
-      subCategorie: "Computers",
-      flag: 1,
-      cantTotal: 2,
-      priceTotal: 3000
-    },
-    {
-      id: 2,
-      nameProduct: "Smartphone Pro",
-      category: "Electronics",
-      priceUnit: 800,
-      flag: 1
-    },
-    {
-      id: 3,
-      nameProduct: "Office Chair",
-      category: "Furniture",
-      priceUnit: 120,
-      subCategorie: "Chairs",
-      flag: 0,
-      cantTotal: 4,
-      priceTotal: 480
-    },
-    {
-      id: 4,
-      nameProduct: "Wireless Headphones",
-      category: "Accessories",
-      priceUnit: 200,
-      flag: 1,
-      cantTotal: 3,
-      priceTotal: 600
-    },
-    {
-      id: 5,
-      nameProduct: "Gaming Mouse",
-      category: "Accessories",
-      priceUnit: 50,
-      subCategorie: "Peripherals",
-      flag: 1
-    }
-  ];
-*/
-  //ref= inject(ViewContainerRef);
-
   container= viewChild.required('container_cards',{read:  ViewContainerRef});
   
   componentRef!: ComponentRef<CardComponent>;
+  ngAfterViewInit() {
+    this.createComponent();
+  }
 
-  loadProducts(): Promise<void> {
+
+  constructor(){}; //public productService: ProductService
+  
+  
+
+
+
+ 
+
+  /*loadProducts(): Promise<void> {
     return new Promise((resolve) => {
         this.productService.getAllProduct().subscribe(response => {
             console.log("Response completa:", response);
@@ -100,16 +63,16 @@ export class HomeComponent {
     this.productService.getAllProduct().subscribe(response => {
        
         this.products=response.list;
-      console.log("primer llamado"+this.products)
+
     });
   }
-  
+  */
 
 
   createComponent(){
     for (let i = 0; i < this.products.length; i++) {
       this.componentRef=this.container().createComponent(CardComponent);
-      console.log("segundo llamado"+this.products)
+      console.log("esto es lo ue tiene products"+this.products)
       this.componentRef.setInput('data', this.products[i]);//nueva forma y dicen q es la mejor
       //this.componentRef.instance.data=this.products[i];
     }
