@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+import syncdata.sdt.business.dto.UserGeneralDTO;
 import syncdata.sdt.business.entities.UserGeneral;
 import syncdata.sdt.business.service.ProductService;
 import syncdata.sdt.business.dto.ProductDTO;
@@ -34,16 +35,7 @@ public class ProductServiceImpl implements ProductService {
         this.productRepository = productRepository;
     }
 
-    @Override
-    public GeneralResponse saveProduct(ProductDTO productDTO){
 
-        Product product = GeneralMapper.mapper(Product.class, productDTO);
-        product.setRegisterDate(Timestamp.valueOf(LocalDateTime.now()));
-        product.setFlag(1);
-        productRepository.save(product);
-
-        return new GeneralResponse();
-    }
 
     @Override
     public Mono<GetResponse<Product>> getProductResponse(long id){
@@ -117,19 +109,37 @@ public class ProductServiceImpl implements ProductService {
     }
 
 
-    @Override
+   @Override
     public Mono<GetResponse<Product>> getProductCategorie(String categorie){
         return Mono.fromSupplier(()->{
 
            List<Product> listProductCategorie= productRepository.findByCategorie(categorie);
 
-            return GetResponse.<Product>builder().
-                    list(listProductCategorie).
-                    build();
+            return GetResponse.<Product>builder()
+                    .list(listProductCategorie)
+                    .build();
 
         });
     }
-    /*@Override
+
+    @Override
+    public GeneralResponse saveProduct(ProductDTO productDTO){
+
+        Product product= GeneralMapper.mapper(Product.class, productDTO);
+        product.setRegisterDate(Timestamp.valueOf(LocalDateTime.now()));
+        product.setFlag(1);
+        productRepository.save(product);
+
+        return new GeneralResponse();
+    }
+
+
+
+
+
+
+
+     /*@Override
     public Mono<GetResponse<Product>> getProductByName(String productName){
         return Mono.fromSupplier(()->{
 

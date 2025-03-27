@@ -14,9 +14,9 @@ spring:
     active: develop
 
   datasource:
-    username: 'DEv_JEAN'
+    username: 'DEV_JEAN'
     url: jdbc:oracle:thin:@192.168.0.46:1521:xe
-    password: 'JuanL02'
+    password: 'JuanL03'
     driver-class-name: oracle.jdbc.driver.OracleDriver
     hikari:
       max-lifetime: 1800000

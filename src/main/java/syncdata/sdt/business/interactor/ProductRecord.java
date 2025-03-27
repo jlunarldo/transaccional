@@ -48,7 +48,7 @@ public class ProductRecord {
 
     public Mono<GetResponse<Product>> getProductCategorie(String categorie){
         return productService.getProductCategorie(categorie);
-    }/*p*/
+    }/**/
 
     /*public Mono<GetResponse<Product>> getflag(String flag){
         return productService.getByFlag(flag);

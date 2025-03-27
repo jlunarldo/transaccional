@@ -1,6 +1,7 @@
 import { Component ,  ElementRef,ViewChild,viewChild, ViewContainerRef } from '@angular/core';
 import { CategorieService } from '../Service/categorie.service';
 import { FormsModule } from '@angular/forms';
+import { EventFilterService } from './eventFilter.service';
 
 @Component({
   selector: 'app-search',
@@ -19,7 +20,7 @@ export class SearchComponent {
     "opcion 3 ",
     "opcion 4"
   ];//para probar estilos
-  constructor(){} //public categorieService:CategorieService
+  constructor(public eventFilterService:EventFilterService, public categorieService:CategorieService){} //
   @ViewChild('filter',{static: true}) filter!: ElementRef<HTMLSelectElement>; //static:true la  referencia se resuelve durante el ciclo de vida del ngOnInit, antes no necesitaba esto porque tenía a la promesa controlando
   //hacerme acordar de sacarlo pq podría explotar
   
@@ -29,13 +30,13 @@ export class SearchComponent {
   
 
   ngOnInit() {
-    /*this.loadCategories().then(() => {
+    this.loadCategories().then(() => {
       this.createOptions();
-  });*/
-  this.createOptions();
+    });
+  //this.createOptions();
   }
 
-  /*loadCategories(): Promise<void> {
+  loadCategories(): Promise<void> {
     return new Promise((resolve) => 
     this.categorieService.getAllCategorie().subscribe(response => {
       console.log("Response completa:", response);
@@ -44,22 +45,25 @@ export class SearchComponent {
     }));
 
   }
-  */
+  
   
   createOptions() {
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < this.categories.length; i++) {
       const option = document.createElement('option');
       console.log(this.categories[i]);
       option.value = this.categories[i];
       option.textContent = this.categories[i];
-      console.log("asigno valores a los options");
+      //console.log("asigno valores a los options");
       this.filter.nativeElement.appendChild(option);
-      console.log("termine de asignar valroes");
+      //console.log("termine de asignar valroes");s
     }
   }
 
   changeCategorie():void {
       this.optionProduct=this.optionSelect;
-      console.log("este es el valor considerado"+this.optionProduct)
+      //console.log("este es el valor considerado"+this.optionProduct)
+      this.eventFilterService.triggerEvent(this.optionProduct);
+
+
   }
 }

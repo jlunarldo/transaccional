@@ -2,6 +2,7 @@ package syncdata.sdt.business.service;
 
 import reactor.core.publisher.Mono;
 import syncdata.sdt.business.dto.ProductDTO;
+import syncdata.sdt.business.dto.UserGeneralDTO;
 import syncdata.sdt.business.entities.Product;
 import syncdata.sdt.model.reponse.GeneralResponse;
 import syncdata.sdt.model.reponse.GetResponse;
@@ -23,4 +24,6 @@ public interface ProductService {
     public Mono<GetResponse<String>> getAllUniqueCategories();
 
     public Mono<GetResponse<Product>> getProductCategorie(String categorie);
+
+
 }

@@ -19,13 +19,7 @@ public class UserRecord {
     @Autowired
     private UserService userService;
 
-    public GeneralResponse saveUserRequest(UserRequest userRequest){
 
-        UserGeneralDTO userGeneralDTO= GeneralMapper.mapper(UserGeneralDTO.class, userRequest);
-
-        return userService.saveUser(userGeneralDTO);
-
-    }
 
     public Mono<GetResponse<UserGeneral>> getUserGeneralResponse(long id){
 
@@ -46,5 +40,13 @@ public class UserRecord {
 
     public Mono<GetResponse<UserGeneral>> getflag(String flag){
         return userService.getByFlag(flag);
+    }
+
+    public GeneralResponse saveUserRequest(UserRequest userRequest){
+
+        UserGeneralDTO userGeneralDTO= GeneralMapper.mapper(UserGeneralDTO.class, userRequest);
+
+        return userService.saveUser(userGeneralDTO);
+
     }
 }

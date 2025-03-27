@@ -1,7 +1,7 @@
 <div class="search-bar">
     <input type="text" id="search" placeholder="Search for products...">
     <select #filter [(ngModel)]="optionSelect" (change)="changeCategorie()">
-        <option value="All Categories" selected>All Categories</option>
+        <option value="Todos" selected>Todos</option>
        
     </select>
     <p [hidden]="optionSelect == '0'">Haz seleccionado la opción # {{ optionProduct }}</p>

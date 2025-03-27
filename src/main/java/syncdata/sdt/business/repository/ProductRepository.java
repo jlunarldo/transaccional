@@ -11,8 +11,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("SELECT DISTINCT d.categorie FROM Product d WHERE d.categorie IS NOT NULL")
     List<String> getAllUniqueCategories();
-
-    @Query("SELECT d FROM Product d WHERE d.categorie = :categorie")
-    List<Product> findByCategorie(@Param("categorie") String categorie);
+    //SELECT d FROM UserGeneral d WHERE LOWER(d.fullName) LIKE LOWER(CONCAT('%', :keyword,'%'))"
+    //            + " AND  d.flag = 1
+    //@Query("SELECT d FROM Product d WHERE LOWER(d.categorie) LIKE LOWER(CONCAT('%', :keyword,'%')")
+    @Query("SELECT d FROM Product d WHERE d.categorie=:keyword")
+    List<Product> findByCategorie(@Param("keyword") String keyword);
 
 }

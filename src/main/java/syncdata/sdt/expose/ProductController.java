@@ -64,14 +64,14 @@ public class ProductController {
             @ApiResponse(code=401, message = "Acces not autorizhed", response = GeneralException.class),
             @ApiResponse(code=500, message = "Ocurrio un error", response = GeneralException.class),
     })
-    @GetMapping(value=("product/{categorie}"), produces = "application/json;charset=UTF-8")
+     @GetMapping(value=("product/{categorie}"), produces = "application/json;charset=UTF-8")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<GetResponse<Product>> getProductName (@PathVariable("categorie") String categorie){
+    public Mono<GetResponse<Product>> getProductCategorie (@PathVariable("categorie") String categorie){
         log.info(categorie);
         return productRecord.getProductCategorie(categorie);
     }
-    /*
-    @GetMapping(value=("flag/{flag}"), produces = "application/json;charset=UTF-8")
+
+    /*@GetMapping(value=("flag/{flag}"), produces = "application/json;charset=UTF-8")
     @ResponseStatus(HttpStatus.OK)
     public Mono<GetResponse<Product>> getFlag (@PathVariable("flag") int flag){
         String flagString= String.valueOf(flag);
