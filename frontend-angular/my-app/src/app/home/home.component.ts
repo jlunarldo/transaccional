@@ -46,7 +46,7 @@ export class HomeComponent {
  loadProducts(categorie:string): Promise<void> {
     return new Promise((resolve) => {
         this.productService.getCategorieProduct(categorie).subscribe(response => {
-            console.log("Response completa:", response);
+            
             this.products = response.list;
             resolve(); 
         });
@@ -54,7 +54,7 @@ export class HomeComponent {
   }
 
   getAllProduct(): void {
-    console.log("entré aquí");
+
     this.productService.getAllProduct().subscribe(response => {
        
         this.products=response.list;
@@ -67,7 +67,7 @@ export class HomeComponent {
     for (let i = 0; i < this.products.length; i++) {
       
       this.componentRef=this.container().createComponent(CardComponent);
-      console.log("esto es lo ue tiene products"+this.products)
+      
       this.componentRef.setInput('data', this.products[i]);//nueva forma y dicen q es la mejor
       //this.componentRef.instance.data=this.products[i];
     }

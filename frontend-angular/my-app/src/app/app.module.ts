@@ -11,12 +11,14 @@ import { SearchComponent } from './search/search.component';
 import { HomeModule } from './home/home.module';
 import { SearchModule } from './search/search.module';
 import { provideHttpClient } from '@angular/common/http';
+import { AddFormComponent } from './add-form/add-form.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     
+
     
   ],
   imports: [

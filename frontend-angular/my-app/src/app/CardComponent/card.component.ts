@@ -36,7 +36,7 @@ export class CardComponent {
             
             //this.priceTotal = (this.productCard?.priceUnit ?? 0) * this.num;
             this.priceTotal = (this.data()?.priceUnit ?? 0) * this.num;
-            console.log("acaban de actualizar el precio:"+this.priceTotal );
+            
             this.cd.detectChanges();
         }
     }
@@ -45,7 +45,7 @@ export class CardComponent {
         this.num++;
         this.checkDisabled();
         this.priceTotal = (this.data()?.priceUnit ?? 0) * this.num;
-        console.log("acaban de actualizar el precio:"+this.priceTotal );
+       
         this.cd.detectChanges();
     }
     checkDisabled():void{

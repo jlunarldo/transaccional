@@ -31,3 +31,31 @@
     background: #50FAFA;
     border:0.5px solid #676262;
 }
+.addProduct{
+    display: flex;
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: #50FAFA;
+    border:0.5px solid #676262;
+}
+.addProduct:hover{
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+    background: linear-gradient(45deg, #50FAFA, #28D8D8);
+   
+}
+
+.addProduct:active {
+    transform: scale(0.9);
+    transition: transform 0.1s ease-in-out;
+}
+
+.form-window{
+    position: fixed;
+  top:30%;
+  left: 35%;
+}

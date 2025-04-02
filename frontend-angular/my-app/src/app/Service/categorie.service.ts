@@ -10,13 +10,14 @@ import { ApiResponse } from "../home/ApiResponse";
 })
 export class CategorieService{
 
-    constructor(private http: HttpClient,){}
-    
-    private urlAll:string="http://localhost:9001/product/v1/getUniqueCategorie"
-    getAllCategorie():Observable<ApiResponse<string>>{
-        console.log(this.http.get<ApiResponse<string>>(this.urlAll));
-        console.log("estoy entrando a ala url");
-        return this.http.get<ApiResponse<string>>(this.urlAll);
-    }
+    private urlAll: string = "http://localhost:9001/product/v1/getUniqueCategorie";
+
+  constructor(private http: HttpClient) {}
+
+  
+  getAllCategorie(): Observable<ApiResponse<string>> {
+
+    return this.http.get<ApiResponse<string>>(this.urlAll);
+  }
 
 }

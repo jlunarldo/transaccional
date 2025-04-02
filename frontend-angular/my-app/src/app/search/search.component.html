@@ -4,5 +4,9 @@
         <option value="Todos" selected>Todos</option>
        
     </select>
-    <p [hidden]="optionSelect == '0'">Haz seleccionado la opción # {{ optionProduct }}</p>
+    <button class="addProduct" (click)="createComponentForm()" [disabled]="isDisabled">Add</button>
+
+
+    <div class="form-window"><ng-container #container_form/></div>
+    
 </div>
