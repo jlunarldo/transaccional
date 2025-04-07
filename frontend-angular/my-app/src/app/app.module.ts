@@ -12,6 +12,7 @@ import { HomeModule } from './home/home.module';
 import { SearchModule } from './search/search.module';
 import { provideHttpClient } from '@angular/common/http';
 import { AddFormComponent } from './add-form/add-form.component';
+import { HeaderModule } from './header/header.module';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { AddFormComponent } from './add-form/add-form.component';
     BrowserModule,
     AppRoutingModule,
     HomeModule,
-   
+    HeaderModule
     
   ],     
   providers: [provideHttpClient()],

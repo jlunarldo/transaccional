@@ -55,6 +55,13 @@ export class ProductService{
         });
     }
 
-    
+    private urlDelete: string = "http://localhost:9001/product/v1/deleteProduct/";
+    deleteProduct(id:number):void{
+        console.log(`${this.urlDelete}${encodeURIComponent(id)}`)
+        this.http.delete(`${this.urlDelete}${encodeURIComponent(id)}`).subscribe({
+            next: () => console.log(`Producto con ID ${id} eliminado correctamente.`),
+            error: (error) => console.error("Error al eliminar el producto:", error)
+        });
+    }
     
 } 

@@ -15,7 +15,7 @@ import { EventFilterService } from '../search/eventFilter.service';
 export class HomeComponent {
    products: Product[]=[
     {
-      id: 1,
+      id_product: 1,
       nameProduct: "Laptop Gamer",
       category: "Electronics",
       priceUnit: 1500,

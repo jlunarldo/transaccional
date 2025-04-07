@@ -21,7 +21,7 @@ export class CardComponent {
 
         
       }
-    constructor( private cd: ChangeDetectorRef){
+    constructor( private cd: ChangeDetectorRef, private productService: ProductService){
        
     }
 
@@ -52,5 +52,10 @@ export class CardComponent {
         this.isDisabled = this.num == 1;
     }
 
-  
+    deleteCard():void{
+        console.log("Estoy eliminando este producti:" , this.data());
+        let algo=this.data().id_product;
+        console.log("El id de data es: ", algo)
+        this.productService.deleteProduct(algo);
+    }
 }

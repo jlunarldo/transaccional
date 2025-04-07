@@ -1,5 +1,5 @@
 export interface  Product{
-    readonly id:number;
+    readonly id_product:number;
     nameProduct:string;
     category:string;
     priceUnit:number;
